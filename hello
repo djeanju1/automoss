@@ -1,0 +1,108 @@
+*
+ * Class: CMSC140 CRN 40569
+ * Instructor: Professor Ara K.
+ * Project 4
+ * Description: Computing employee absences.
+ * Due Date: June 25, 2023
+ * I pledge that I have completed the programming assignment independently.
+ I have not copied the code from a student or any source.
+ I have not given my code to any student.
+ Print your Name here: David Jean-Julien
+*/
+#include<iostream>
+#include<iomanip>
+#include<fstream>
+using namespace std;
+ofstream outFile("employeeAbsences.txt");
+int getNumOfEmployees();
+int getTotalDaysAbsent(int noOfEmps);
+double calculateAvgDaysAbsent(int noOfEmps, int totAbsents);
+int main() {
+ 
+cout << "Calculate the average number of days a company's employee are absent." << endl << endl;
+ 
+outFile << "EMPLOYEE ABSENCE REPORT" << endl;
+ 
+outFile <<" \t\t "<< endl;
+ 
+int n = getNumOfEmployees();
+ 
+int totAbs = getTotalDaysAbsent(n);
+ 
+double avg = calculateAvgDaysAbsent(n, totAbs);
+ 
+outFile << "\nThe " << n << " employees were absent a total of " << totAbs << " days." << endl;
+ 
+outFile << "The average number of days absent is " << avg << " days." << endl;
+ 
+cout << "\nProgrammer: David Jean-Julien" << endl;
+ 
+cout << "CMSC 140 Project 4" << endl;
+ 
+cout << "Due Date: 7/25/2023";
+ 
+outFile << "\nClass: CMSC 140 CRN 40569" << endl;
+ 
+outFile << "Assignment: Project 4" << endl;
+ 
+outFile << "Programmer: David Jean-Julien" << endl;
+ 
+outFile << "Due Date: 7/25/2023" << endl;
+ 
+return 0;
+}
+int getNumOfEmployees() {
+ 
+int n;
+ 
+cout << "Please enter the number of employees in the company: ";
+ 
+cin >> n;
+ 
+while (n < 0) {
+ 
+cout << "The number of employees must not be negative." << endl;
+ 
+cout << "Please re-enter the number of employees in the company: ";
+ 
+cin >> n;
+ 
+}
+ 
+return n;
+}
+int getTotalDaysAbsent(int noOfEmps) {
+ 
+int id, absents, total = 0;
+ 
+for (int i = 0; i < noOfEmps; i++) {
+ 
+cout << "Please enter an employee ID: ";
+ 
+cin >> id;
+ 
+cout << "Please enter the number of days this employee was absent: ";
+ 
+cin >> absents;
+ 
+while (absents < 0) {
+ 
+cout << "The number of days must not be negative." << endl;
+ 
+cout << "Please re-enter the number of days absent: ";
+ 
+cin >> absents;
+ 
+}
+ 
+total += absents;
+ 
+outFile << "\t" << setw(4) << id << "\t\t" << setw(2) << absents << endl;
+ 
+}
+ 
+return total;
+}
+double calculateAvgDaysAbsent(int noOfEmps, int totAbsents) {
+ 
+return (double)totAbsents / noOfEmps;
